@@ -1,7 +1,9 @@
 package com.gaebalgoebal.weddingPaper.repository;
 
+import com.gaebalgoebal.weddingPaper.entity.Users;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserRepository {
+public interface UserRepository extends JpaRepository<Users, Long> {
 }
