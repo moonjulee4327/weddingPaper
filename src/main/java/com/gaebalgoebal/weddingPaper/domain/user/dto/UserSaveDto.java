@@ -1,6 +1,6 @@
-package com.gaebalgoebal.weddingPaper.dto;
+package com.gaebalgoebal.weddingPaper.domain.user.dto;
 
-import com.gaebalgoebal.weddingPaper.entity.Users;
+import com.gaebalgoebal.weddingPaper.domain.user.entity.Users;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

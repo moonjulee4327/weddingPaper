@@ -1,7 +1,7 @@
-package com.gaebalgoebal.weddingPaper.controller;
+package com.gaebalgoebal.weddingPaper.domain.user.controller;
 
-import com.gaebalgoebal.weddingPaper.dto.UserSaveDto;
-import com.gaebalgoebal.weddingPaper.service.UserService;
+import com.gaebalgoebal.weddingPaper.domain.user.dto.UserSaveDto;
+import com.gaebalgoebal.weddingPaper.domain.user.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.ParseException;
 
 @Api(tags = "User API")
 @RequestMapping("api/user")

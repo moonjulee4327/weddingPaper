@@ -1,4 +1,4 @@
-package com.gaebalgoebal.weddingPaper.entity;
+package com.gaebalgoebal.weddingPaper.domain.user.entity;
 
 import lombok.AccessLevel;
 import lombok.Builder;

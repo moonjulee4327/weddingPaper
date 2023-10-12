@@ -1,4 +1,4 @@
-package com.gaebalgoebal.weddingPaper.cofig;
+package com.gaebalgoebal.weddingPaper.global.cofig;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
