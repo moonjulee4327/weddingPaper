@@ -9,15 +9,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserSaveDto {
 
-    private String name;
+    private String userName;
 
     @Builder
-    public UserSaveDto(String name){
-        this.name = name;
+    public UserSaveDto(String userName){
+        this.userName = userName;
     }
 
     public Users toEntity(){
-        return Users.builder().name(name).build();
+        return Users.builder().userName(userName).build();
     }
 
 }

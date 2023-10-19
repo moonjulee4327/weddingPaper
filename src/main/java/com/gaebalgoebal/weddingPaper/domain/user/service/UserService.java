@@ -14,7 +14,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     public Long createUser(UserSaveDto userSaveDto){
-        return userRepository.save(userSaveDto.toEntity()).getId();
+        return userRepository.save(userSaveDto.toEntity()).getUserId();
     }
 
 }

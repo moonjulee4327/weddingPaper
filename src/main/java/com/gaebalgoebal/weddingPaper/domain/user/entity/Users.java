@@ -15,14 +15,14 @@ public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
     @Column(nullable = false)
-    private String name;
+    private String userName;
 
     @Builder
-    public Users(String name){
-        this.name = name;
+    public Users(String userName){
+        this.userName = userName;
     }
 
 }
