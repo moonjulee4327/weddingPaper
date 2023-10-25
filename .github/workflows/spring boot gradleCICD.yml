@@ -17,6 +17,10 @@ on:
 permissions:
   contents: read
 
+env:
+  S3_BUCKET_NAME: mj-workspace
+
+
 jobs:
   build:
 
@@ -36,4 +40,13 @@ jobs:
       #with:
         #arguments: build
       run : ./gradlew clean build --exclude-task test
+    - name: Get current time
+      uses: 1466587594/get-current-time@v2
+      id: current-time
+      with:
+        format: YYYY-MM-DDTHH-mm-ss
+        utcOffset: "+09:00"
+    - name: Show Current Time
+      run: echo "CurrentTime=${{steps.current-time.outputs.formattedTime}}"
+      shell: bash
         
