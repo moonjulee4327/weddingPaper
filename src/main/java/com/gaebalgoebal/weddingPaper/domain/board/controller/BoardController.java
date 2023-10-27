@@ -20,7 +20,7 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @Operation(summary = "Save Description", description = "방명록을 저장합니다.")
+    @Operation(summary = "Save Description", description = "배영호를 저장합니다.")
     @ApiResponses(value = {@ApiResponse(responseCode = "success", description = "성공"), @ApiResponse(responseCode = "fail")})
     @PostMapping("/save")
     public Long boardDescriptionSave(@RequestBody BoardDescriptionSaveDto boardDescriptionSaveDto){
