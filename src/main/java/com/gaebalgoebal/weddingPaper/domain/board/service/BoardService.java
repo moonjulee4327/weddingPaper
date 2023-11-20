@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -21,7 +23,7 @@ public class BoardService {
 
     private final AwsS3Service awsS3Service;
 
-    public Long descriptionSave(BoardDescriptionSaveDto boardDescriptionSaveDto, MultipartFile[] multipartFiles){
+    public Long descriptionSave(BoardDescriptionSaveDto boardDescriptionSaveDto, List<MultipartFile> multipartFiles){
         Users user = userRepository.findById(boardDescriptionSaveDto.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 유저가 존재하지 않습니다. id=" + boardDescriptionSaveDto.getUserId()));
 
