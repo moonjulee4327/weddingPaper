@@ -27,7 +27,7 @@ public class BoardService {
         Users user = userRepository.findById(boardDescriptionSaveDto.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 유저가 존재하지 않습니다. id=" + boardDescriptionSaveDto.getUserId()));
 
-        if(multipartFiles != null){
+        if(multipartFiles.isEmpty() || multipartFiles != null){
             for(MultipartFile multipartFile : multipartFiles){
                 awsS3Service.uploadImage(multipartFile);
             }

@@ -27,7 +27,7 @@ public class AwsS3Service {
         objectMetadata.setContentType(multipartFile.getContentType());
         objectMetadata.setContentLength(multipartFile.getSize());
 
-        String fileName = "test1/" + UUID.randomUUID() + "-" + multipartFile.getOriginalFilename();
+        String fileName = "weddingPaperImage/" + UUID.randomUUID() + "-" + multipartFile.getOriginalFilename();
 
         try(InputStream inputStream = multipartFile.getInputStream()) {
             amazonS3Client.putObject(bucketName, fileName, inputStream, objectMetadata);
