@@ -11,13 +11,16 @@ public class UserSaveDto {
 
     private String userName;
 
+    private String cellPhoneNumber;
+
     @Builder
-    public UserSaveDto(String userName){
+    public UserSaveDto(String userName, String cellPhoneNumber){
         this.userName = userName;
+        this.cellPhoneNumber = cellPhoneNumber;
     }
 
     public Users toEntity(){
-        return Users.builder().userName(userName).build();
+        return Users.builder().userName(userName).cellPhoneNumber(cellPhoneNumber).build();
     }
 
 }

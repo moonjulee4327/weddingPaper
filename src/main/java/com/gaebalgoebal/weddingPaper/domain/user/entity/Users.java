@@ -21,12 +21,16 @@ public class Users {
     @Column(name = "user_name")
     private String userName;
 
+    @Column(name = "cellphone_number")
+    private String cellPhoneNumber;
+
     @OneToMany(mappedBy = "users")
     private List<Board> boards;
 
     @Builder
-    public Users(String userName){
+    public Users(String userName, String cellPhoneNumber){
         this.userName = userName;
+        this.cellPhoneNumber = cellPhoneNumber;
     }
 
 }
