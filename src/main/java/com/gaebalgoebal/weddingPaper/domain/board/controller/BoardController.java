@@ -7,10 +7,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Api(tags = "Board API")
 @RequestMapping("api/board")
@@ -23,8 +21,8 @@ public class BoardController {
     @Operation(summary = "Save Description", description = "방명록을 저장합니다.")
     @ApiResponses(value = {@ApiResponse(responseCode = "success", description = "성공"), @ApiResponse(responseCode = "fail", description = "실패")})
     @PostMapping("/save")
-    public Long boardDescriptionSave(@RequestBody BoardDescriptionSaveDto boardDescriptionSaveDto){
-        return boardService.descriptionSave(boardDescriptionSaveDto);
+    public Long boardDescriptionSave(@RequestPart("image") MultipartFile[] multipartFiles, @RequestPart("data") BoardDescriptionSaveDto boardDescriptionSaveDto){
+        return boardService.descriptionSave(boardDescriptionSaveDto, multipartFiles);
     }
 
 }

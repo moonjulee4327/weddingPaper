@@ -4,9 +4,11 @@ import com.gaebalgoebal.weddingPaper.domain.board.dto.BoardDescriptionSaveDto;
 import com.gaebalgoebal.weddingPaper.domain.board.repository.BoardRepository;
 import com.gaebalgoebal.weddingPaper.domain.user.entity.Users;
 import com.gaebalgoebal.weddingPaper.domain.user.repository.UserRepository;
+import com.gaebalgoebal.weddingPaper.global.common.AwsS3Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @Service
@@ -17,9 +19,17 @@ public class BoardService {
 
     private final UserRepository userRepository;
 
-    public Long descriptionSave(BoardDescriptionSaveDto boardDescriptionSaveDto){
+    private final AwsS3Service awsS3Service;
+
+    public Long descriptionSave(BoardDescriptionSaveDto boardDescriptionSaveDto, MultipartFile[] multipartFiles){
         Users user = userRepository.findById(boardDescriptionSaveDto.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 유저가 존재하지 않습니다. id=" + boardDescriptionSaveDto.getUserId()));
+
+        if(multipartFiles != null){
+            for(MultipartFile multipartFile : multipartFiles){
+                awsS3Service.uploadImage(multipartFile);
+            }
+        }
 
         return boardRepository.save(boardDescriptionSaveDto.toEntity(user)).getBoardId();
     }
