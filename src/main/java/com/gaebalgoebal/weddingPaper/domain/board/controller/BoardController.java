@@ -20,7 +20,7 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @Operation(summary = "Save Description and Image", description = "방명록과 이미지를 저장합니다.")
+    @Operation(summary = "Save Description and Images", description = "방명록과 이미지를 저장합니다.")
     @ApiResponses(value = {@ApiResponse(responseCode = "success", description = "성공"), @ApiResponse(responseCode = "fail", description = "실패")})
     @PostMapping("/save")
     public Long boardDescriptionSave(@RequestPart(value = "image", required = false) List<MultipartFile> multipartFiles, @RequestPart("data") BoardDescriptionSaveDto boardDescriptionSaveDto){
