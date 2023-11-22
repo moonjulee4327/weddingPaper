@@ -1,6 +1,6 @@
 package com.gaebalgoebal.weddingPaper.domain.test.controller;
 
-import com.gaebalgoebal.weddingPaper.global.common.AwsS3Service;
+import com.gaebalgoebal.weddingPaper.global.common.awsS3Upload.service.serviceImpl.AwsS3ServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class ApiTestController {
 
-    private final AwsS3Service awsS3Service;
+    private final AwsS3ServiceImpl awsS3ServiceImpl;
 
     @ApiOperation(value = "연동 및 CORS 테스트", notes = "React와 Spring boot 서버 연동을 테스트한다.")
     @GetMapping("/apiTest")
@@ -30,7 +30,7 @@ public class ApiTestController {
     @PostMapping("/imageTest")
     public String uploadImageTest(@RequestParam("images") MultipartFile[] multipartFiles){
         for(MultipartFile multipartFile : multipartFiles){
-            awsS3Service.uploadImage(multipartFile);
+            awsS3ServiceImpl.uploadImageTest(multipartFile);
         }
         return "업로드 성공";
     }
