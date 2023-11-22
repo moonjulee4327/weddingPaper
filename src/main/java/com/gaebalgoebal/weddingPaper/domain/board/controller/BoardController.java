@@ -30,7 +30,7 @@ public class BoardController {
 
     @Operation(summary = "Find all Description and images", description = "저장된 방명록과 이미지 전체를 조회합니다.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "성공"), @ApiResponse(responseCode = "fail", description = "실패")})
-    @GetMapping("/boardAllRead")
+    @PostMapping("/boardAllRead")
     public List<Users> boardAllRead(){
         return boardService.boardAllRead();
     }
