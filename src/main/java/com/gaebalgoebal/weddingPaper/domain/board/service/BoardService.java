@@ -1,16 +1,20 @@
 package com.gaebalgoebal.weddingPaper.domain.board.service;
 
 import com.gaebalgoebal.weddingPaper.domain.board.dto.BoardDescriptionSaveDto;
+import com.gaebalgoebal.weddingPaper.domain.board.dto.BoardImagesAllReadDto;
 import com.gaebalgoebal.weddingPaper.domain.board.entity.Board;
 import com.gaebalgoebal.weddingPaper.domain.board.repository.BoardRepository;
 import com.gaebalgoebal.weddingPaper.domain.user.entity.Users;
 import com.gaebalgoebal.weddingPaper.domain.user.repository.UserRepository;
+import com.gaebalgoebal.weddingPaper.global.common.awsS3Upload.entity.AwsS3;
+import com.gaebalgoebal.weddingPaper.global.common.awsS3Upload.repository.AwsS3Repository;
 import com.gaebalgoebal.weddingPaper.global.common.awsS3Upload.service.serviceImpl.AwsS3ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -39,7 +43,22 @@ public class BoardService {
         return board.getBoardId();
     }
 
-    public List<Users> boardAllRead(){
-        return userRepository.findAll();
+    public List<BoardImagesAllReadDto> boardAllRead(){
+        List<BoardImagesAllReadDto> allReadDtos = new ArrayList<>();
+
+        List<Users> users = userRepository.findAll();
+
+        for(int i = 0; i < users.size(); i++){
+            List<String> urls = new ArrayList<>();
+            for(int j = 0; j < users.get(i).getBoards().get(0).getAwsS3s().size(); j++){
+                urls.add(users.get(i).getBoards().get(0).getAwsS3s().get(j).getUrl());
+            }
+
+            BoardImagesAllReadDto allReadDto =
+                new BoardImagesAllReadDto(users.get(i).getUserId(), users.get(i).getUserName(), users.get(i).getBoards().get(0).getDescription(), urls);
+            allReadDtos.add(allReadDto);
+        }
+
+        return allReadDtos;
     }
 }
