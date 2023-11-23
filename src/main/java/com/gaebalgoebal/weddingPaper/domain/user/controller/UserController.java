@@ -1,5 +1,6 @@
 package com.gaebalgoebal.weddingPaper.domain.user.controller;
 
+import com.gaebalgoebal.weddingPaper.domain.user.dto.UserDrawDto;
 import com.gaebalgoebal.weddingPaper.domain.user.dto.UserSaveDto;
 import com.gaebalgoebal.weddingPaper.domain.user.service.UserService;
 import io.swagger.annotations.Api;
@@ -7,10 +8,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Api(tags = "User API")
@@ -29,10 +29,17 @@ public class UserController {
     }
 
     @Operation(summary = "Access User", description = "신랑, 신부 페이지 접근을 허용합니다.")
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "성공 (return jh or ej)"), @ApiResponse(responseCode = "fail")})
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "성공 (return jh)"), @ApiResponse(responseCode = "fail")})
     @PostMapping("/access")
     public String accessUser(@RequestBody UserSaveDto userSaveDto){
         return userService.accessUser(userSaveDto);
+    }
+
+    @Operation(summary = "Draw All User Select", description = "신랑, 신부 페이지에서 경품 룰렛 화면을 조회합니다.")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "성공"), @ApiResponse(responseCode = "fail")})
+    @GetMapping("/drawUserRead")
+    public List<UserDrawDto> drawUserRead(){
+        return userService.drawUserRead();
     }
 
 }
