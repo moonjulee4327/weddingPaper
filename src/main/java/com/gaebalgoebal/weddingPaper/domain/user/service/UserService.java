@@ -45,11 +45,6 @@ public class UserService {
 
         List<UserDrawDto> userDrawDtos = users.stream().map(UserDrawDto::new).collect(Collectors.toList());
 
-        for(UserDrawDto s : userDrawDtos){
-            System.out.println(s.getUserId());
-            System.out.println(s.getUserName());
-            System.out.println(s.getCellPhoneNumber());
-        }
         return userDrawDtos;
     }
 }
