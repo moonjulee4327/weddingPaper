@@ -41,10 +41,6 @@ public class UserService {
     }
 
     public List<UserDrawDto> drawUserRead(){
-        List<Users> users = userRepository.findAll();
-
-        List<UserDrawDto> userDrawDtos = users.stream().map(UserDrawDto::new).collect(Collectors.toList());
-
-        return userDrawDtos;
+        return userRepository.findDistinctUsers();
     }
 }

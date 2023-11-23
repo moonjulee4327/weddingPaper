@@ -1,5 +1,6 @@
 package com.gaebalgoebal.weddingPaper.domain.user.repository;
 
+import com.gaebalgoebal.weddingPaper.domain.user.dto.UserDrawDto;
 import com.gaebalgoebal.weddingPaper.domain.user.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,6 +13,6 @@ public interface UserRepository extends JpaRepository<Users, Long> {
 
     Users findByUserNameAndCellPhoneNumber(String userName, String cellPhoneNumber);
 
-    @Query(value = "select u.user_id, u.user_name, u.cellphone_number from users u group by user_name, cellphone_number", nativeQuery = true)
-    List<Users> findDistinctByUserNameAndCellPhoneNumber();
+    @Query(value = "select distinct new com.gaebalgoebal.weddingPaper.domain.user.dto.UserDrawDto(u.userName, u.cellPhoneNumber) from Users u")
+    List<UserDrawDto> findDistinctUsers();
 }
