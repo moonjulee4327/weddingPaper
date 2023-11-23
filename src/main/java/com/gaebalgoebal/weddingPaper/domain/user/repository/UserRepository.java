@@ -13,6 +13,6 @@ public interface UserRepository extends JpaRepository<Users, Long> {
 
     Users findByUserNameAndCellPhoneNumber(String userName, String cellPhoneNumber);
 
-    @Query(value = "select distinct new com.gaebalgoebal.weddingPaper.domain.user.dto.UserDrawDto(u.userName, u.cellPhoneNumber) from Users u")
+    @Query(value = "select distinct new com.gaebalgoebal.weddingPaper.domain.user.dto.UserDrawDto(u.userName, u.cellPhoneNumber) from Users u where u.cellPhoneNumber != ''")
     List<UserDrawDto> findDistinctUsers();
 }
