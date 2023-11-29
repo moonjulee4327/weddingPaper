@@ -60,6 +60,8 @@ public class AwsS3ServiceImpl implements AwsS3Service {
         try(InputStream inputStream = multipartFile.getInputStream()) {
             amazonS3Client.putObject(bucketName, fileName, inputStream, objectMetadata);
         }catch (IOException e){
+            log.error("파일을 업로드하는 도중 오류가 발생했습니다. 파일명 : {}\n파일 사이즈 : {}"
+                    , multipartFile.getOriginalFilename(), multipartFile.getSize());
             throw new IllegalArgumentException("S3 파일 업로드 실패!");
         }
 
