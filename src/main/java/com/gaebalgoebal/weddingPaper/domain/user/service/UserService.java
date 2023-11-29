@@ -6,10 +6,10 @@ import com.gaebalgoebal.weddingPaper.domain.user.entity.Users;
 import com.gaebalgoebal.weddingPaper.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -17,6 +17,12 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
+
+    @Value("${admin.name}")
+    private String adminName;
+
+    @Value("${admin.password}")
+    private String adminPassword;
 
     public Long createUser(UserSaveDto userSaveDto){
         return userRepository.save(userSaveDto.toEntity()).getUserId();
@@ -27,8 +33,7 @@ public class UserService {
         Users users = userSaveDto.toEntity();
         try {
             Users accessUser = userRepository.findByUserNameAndCellPhoneNumber(users.getUserName(), users.getCellPhoneNumber());
-
-            if(accessUser.getUserName().equals("낌스") && accessUser.getCellPhoneNumber().equals("q1w2e3r4")){
+            if(accessUser.getUserName().equals(adminName) && accessUser.getCellPhoneNumber().equals(adminPassword)){
                 result = "jh";
             }else {
                 return result;
