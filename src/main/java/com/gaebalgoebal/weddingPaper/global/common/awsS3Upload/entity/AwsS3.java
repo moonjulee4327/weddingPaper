@@ -22,12 +22,13 @@ public class AwsS3 {
     @JoinColumn(name = "board_id", nullable = false)
     private Board board;
 
+    @Column(columnDefinition = "TEXT")
     private String url;
 
-    @Column(name = "original_name")
+    @Column(name = "original_name", length = 512)
     private String originalName;
 
-    @Column(name = "stored_name")
+    @Column(name = "stored_name", length = 512)
     private String storedName;
 
     @Builder
