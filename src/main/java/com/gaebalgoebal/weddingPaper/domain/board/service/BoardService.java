@@ -6,8 +6,6 @@ import com.gaebalgoebal.weddingPaper.domain.board.entity.Board;
 import com.gaebalgoebal.weddingPaper.domain.board.repository.BoardRepository;
 import com.gaebalgoebal.weddingPaper.domain.user.entity.Users;
 import com.gaebalgoebal.weddingPaper.domain.user.repository.UserRepository;
-import com.gaebalgoebal.weddingPaper.global.common.awsS3Upload.entity.AwsS3;
-import com.gaebalgoebal.weddingPaper.global.common.awsS3Upload.repository.AwsS3Repository;
 import com.gaebalgoebal.weddingPaper.global.common.awsS3Upload.service.serviceImpl.AwsS3ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
